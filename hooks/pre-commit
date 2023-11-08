@@ -1,0 +1,17 @@
+#!/bin/bash
+
+COMMAND="pingsafe-cli --verbose scan secret -d ./ --pre-commit"
+
+# Run the command.
+$COMMAND
+
+# Capture the exit status.
+EXIT_STATUS=$?
+
+# Check if the exit status is non-zero.
+if [ $EXIT_STATUS -ne 0 ]; then
+    echo "Secrets detected in the repo, please check output."
+    exit $EXIT_STATUS
+else
+    exit 0
+fi
